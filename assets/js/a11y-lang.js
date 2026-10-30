@@ -29,12 +29,6 @@
   }
   window.fgA11yLang = setMenuLang;
 
-  /* the same order main.js uses: ?lang= in the address, then the visitor's
-     saved choice, then the language the page is written in */
-  var fromUrl = /[?&]lang=(he|en)\b/.exec(location.search);
-  var saved = null;
-  try { saved = localStorage.getItem("ng.lang"); } catch (e) { /* storage blocked */ }
-  setMenuLang(fromUrl ? fromUrl[1]
-    : saved === "he" || saved === "en" ? saved
-    : document.documentElement.lang === "en" ? "en" : "he");
+  /* English is off for now (LANGS in main.js), so the site is always Hebrew */
+  setMenuLang("he");
 })();

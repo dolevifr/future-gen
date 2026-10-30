@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Every address here is the canonical one (no ".html": Netlify serves and links
-     the pages that way). The ?lang=en addresses are the English pages; _redirects
-     serves them the pre-rendered English files. Update <lastmod> when a page changes. -->
+     the pages that way). English is off for now, so there are no ?lang=en
+     addresses. Update <lastmod> when a page changes. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://future-gen.co.il/</loc>
-    <lastmod>2026-10-18</lastmod>
-  </url>
-  <url>
-    <loc>https://future-gen.co.il/?lang=en</loc>
     <lastmod>2026-10-18</lastmod>
   </url>
   <url>
@@ -16,23 +12,11 @@
     <lastmod>2026-10-04</lastmod>
   </url>
   <url>
-    <loc>https://future-gen.co.il/syllabus?lang=en</loc>
-    <lastmod>2026-10-04</lastmod>
-  </url>
-  <url>
     <loc>https://future-gen.co.il/about</loc>
     <lastmod>2026-10-07</lastmod>
   </url>
   <url>
-    <loc>https://future-gen.co.il/about?lang=en</loc>
-    <lastmod>2026-10-07</lastmod>
-  </url>
-  <url>
     <loc>https://future-gen.co.il/games</loc>
-    <lastmod>2026-10-30</lastmod>
-  </url>
-  <url>
-    <loc>https://future-gen.co.il/games?lang=en</loc>
     <lastmod>2026-10-30</lastmod>
   </url>
   <url>
@@ -41,10 +25,6 @@
   </url>
   <url>
     <loc>https://future-gen.co.il/accessibility</loc>
-    <lastmod>2026-10-01</lastmod>
-  </url>
-  <url>
-    <loc>https://future-gen.co.il/accessibility?lang=en</loc>
     <lastmod>2026-10-01</lastmod>
   </url>
   <url>

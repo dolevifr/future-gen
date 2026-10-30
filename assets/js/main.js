@@ -6,7 +6,9 @@
 (function () {
   "use strict";
 
-  var LANGS = ["he", "en"];
+  /* English is off for now (README, "דו־לשוניות"): ?lang=en and a saved "en"
+     both fall back to Hebrew. Add "en" back to turn it on. */
+  var LANGS = ["he"];
   var LANG_KEY = "ng.lang";
   var TRACK_KEY = "ng.track";
   var state = { lang: "he", track: "junior", filter: "all", q: "", plan: "yearly" };

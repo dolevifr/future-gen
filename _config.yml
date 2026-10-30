@@ -1,0 +1,6 @@
+# GitHub Pages preview (https://dolevifr.github.io/future-gen/).
+# Pages runs Jekyll, which already skips everything that starts with "_"
+# (_tools, _archive, _headers, _redirects). This keeps the README out too.
+# Netlify ignores this file; _redirects hides it there.
+exclude:
+  - README.md

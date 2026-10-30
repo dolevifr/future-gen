@@ -40,5 +40,6 @@ https://ubiquitous-cactus-9412cc.netlify.app/*  https://future-gen.co.il/:splat 
 # Internal working files are not part of the public site.
 /README.md      /404.html    404!
 /_config.yml    /404.html    404!
+/CLAUDE.md      /404.html    404!
 /_archive/*     /404.html    404!
 /_tools/*       /404.html    404!

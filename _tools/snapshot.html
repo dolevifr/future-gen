@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>צילום התוכן המוטמע</title>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:640px;margin:40px auto;padding:0 16px;line-height:1.6;color:#1A1440;background:#fff}
+  li.ok{color:#2C5A16} li.err{color:#B3261E}
+  iframe{position:absolute;left:-10000px;top:0;width:1280px;height:900px;border:0}
+</style>
+</head>
+<body>
+<h1>צילום התוכן המוטמע</h1>
+<p>העמוד טוען את חמשת העמודים הדו-לשוניים (דף הבית, הסילבוס, האודות, המשחקים והצהרת הנגישות) בעברית
+ובאנגלית, אוסף את התוכן שנבנה מ-<code>data.js</code> ומ-<code>i18n.js</code> ושולח אותו
+לשרת המקומי. בסוף מריצים <code>python3 _tools/inject.py</code>.</p>
+<ol id="log"></ol>
+<script>
+/* Which JS-rendered containers each page carries pre-rendered in its HTML. */
+var PAGES = {
+  index: ["tickerAll", "heroVideo", "trackGrid", "pillarGrid", "journeySwitch", "journeyStops", "planGrid",
+          "faqList", "fAge", "fTrack", "footerTracks", "year"],
+  syllabus: ["trackSwitch", "sylChips", "resultCount", "syllabusList", "footerTracks", "year"],
+  about: ["footerTracks", "year"],
+  games: ["gameGrid", "footerTracks", "year"],
+  accessibility: ["footerTracks", "year"]
+};
+function log(text, cls) {
+  var li = document.createElement("li");
+  li.textContent = text; if (cls) li.className = cls;
+  document.getElementById("log").appendChild(li);
+}
+/* The containers, every translated string, the title and the description as
+   main.js renders them. inject.py writes the Hebrew ones into the page itself
+   and builds the English file (index.en.html …) from the English ones. */
+function capture(page, lang) {
+  return new Promise(function (resolve, reject) {
+    var f = document.createElement("iframe");
+    f.onload = function () {
+      setTimeout(function () {
+        try {
+          var d = f.contentDocument, snap = { html: {} };
+          PAGES[page].forEach(function (id) {
+            var el = d.getElementById(id);
+            if (!el) throw new Error("missing #" + id + " in " + page + ".html");
+            snap.html[id] = el.innerHTML.replace(/ style="transform:[^"]*"/g, "");
+          });
+          /* the Hebrew page keeps its first rotating word as written; the English file takes it from here */
+          var word = d.getElementById("tickerWord");
+          if (word && lang === "en") snap.html.tickerWord = word.innerHTML;
+          snap.title = d.title;
+          snap.desc = d.querySelector('meta[name="description"]').getAttribute("content");
+          snap.i18n = {};
+          Array.prototype.forEach.call(d.querySelectorAll("[data-i18n]"), function (el) {
+            snap.i18n[el.getAttribute("data-i18n")] = el.innerHTML;
+          });
+          snap.aria = {};
+          Array.prototype.forEach.call(d.querySelectorAll("[data-i18n-aria]"), function (el) {
+            var spec = el.getAttribute("data-i18n-aria"), vals = {};
+            spec.split("|").forEach(function (pair) {
+              var name = pair.split(":")[0].trim();
+              vals[name] = el.getAttribute(name);
+            });
+            snap.aria[spec] = vals;
+          });
+          f.remove();
+          var name = page + (lang === "en" ? "-en" : "");
+          fetch("/__snapshot?page=" + name, { method: "POST", body: JSON.stringify(snap) })
+            .then(function (r) { if (r.status !== 204) throw new Error("server said " + r.status); resolve(); })
+            .catch(reject);
+        } catch (e) { reject(e); }
+      }, 1200);
+    };
+    f.src = "/" + page + ".html?" + (lang === "en" ? "lang=en&" : "") + "snapshot=" + Date.now();
+    document.body.appendChild(f);
+  });
+}
+/* the snapshot is always the default view, not this browser's saved choices */
+["ng.lang", "ng.track"].forEach(function (k) { try { localStorage.removeItem(k); } catch (e) {} });
+var steps = [
+  ["index", "he", "דף הבית נאסף"],
+  ["syllabus", "he", "הסילבוס נאסף"],
+  ["about", "he", "עמוד האודות נאסף"],
+  ["games", "he", "עמוד המשחקים נאסף"],
+  ["accessibility", "he", "הצהרת הנגישות נאספה"],
+  ["index", "en", "דף הבית באנגלית נאסף"],
+  ["syllabus", "en", "הסילבוס באנגלית נאסף"],
+  ["about", "en", "עמוד האודות באנגלית נאסף"],
+  ["games", "en", "עמוד המשחקים באנגלית נאסף"],
+  ["accessibility", "en", "הצהרת הנגישות באנגלית נאספה"]
+];
+steps.reduce(function (chain, s) {
+  return chain.then(function () { return capture(s[0], s[1]); }).then(function () { log(s[2], "ok"); });
+}, Promise.resolve())
+  .then(function () { log("עכשיו מריצים: python3 _tools/inject.py"); document.title = "done"; })
+  .catch(function (e) { log("שגיאה: " + e.message + " — האם השרת רץ (python3 _tools/serve.py)?", "err"); document.title = "error"; });
+</script>
+</body>
+</html>

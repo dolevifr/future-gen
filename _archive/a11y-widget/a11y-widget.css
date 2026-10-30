@@ -1,0 +1,197 @@
+/* Rules removed from assets/css/styles.css on 1 Oct 2026, when the site
+   switched to TAB-NAV's accessibility plugin. Kept for reference only. */
+
+/* ---------- text scaling (rem-based, so the whole page follows) ---------- */
+html{font-size:calc(100% * var(--a11y-scale, 1))}
+
+/* ---------- the launcher button ---------- */
+.a11y-btn{
+  position:fixed;inset-block-end:18px;inset-inline-end:18px;z-index:9000;
+  width:56px;height:56px;border-radius:50%;border:3px solid var(--ink);
+  background:var(--brand);color:#fff;cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 6px 20px -6px rgba(26,20,64,.6);transition:transform .18s ease,background .18s ease;
+}
+.a11y-btn:hover{transform:scale(1.07);background:var(--brand-dark)}
+.a11y-btn svg{width:30px;height:30px;display:block}
+
+/* ---------- the panel ---------- */
+.a11y-panel{
+  position:fixed;inset-block-end:86px;inset-inline-end:18px;z-index:9001;
+  width:min(340px,calc(100vw - 36px));max-height:min(78vh,620px);overflow-y:auto;
+  background:var(--surface);color:var(--ink);border:3px solid var(--ink);border-radius:var(--r-lg);
+  box-shadow:0 24px 60px -20px rgba(26,20,64,.6);padding:18px;
+}
+.a11y-panel[hidden]{display:none!important}
+.a11y-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-block-end:14px}
+.a11y-head h2{font-size:1.15rem;margin:0}
+.a11y-close{
+  width:38px;height:38px;flex:0 0 auto;border-radius:12px;border:2px solid var(--line-2);
+  background:var(--surface);color:var(--ink);font-size:1.2rem;line-height:1;cursor:pointer;
+}
+.a11y-close:hover{background:var(--brand-soft)}
+.a11y-group{margin-block-end:16px}
+.a11y-group>h3{font-size:.82rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-2);margin-block-end:8px}
+.a11y-row{display:flex;align-items:center;gap:8px}
+.a11y-opt{
+  display:flex;align-items:center;gap:10px;width:100%;text-align:start;
+  background:var(--surface);border:2px solid var(--line-2);border-radius:var(--r-sm);
+  padding:11px 13px;margin-block-end:8px;cursor:pointer;font:inherit;font-size:.93rem;color:var(--ink);
+  min-height:44px;transition:.15s;
+}
+.a11y-opt:hover{border-color:var(--brand);background:var(--brand-soft)}
+.a11y-opt .ico{font-size:1.15rem;flex:0 0 auto}
+.a11y-opt .lbl{flex:1;min-width:0}
+.a11y-opt .state{
+  flex:0 0 auto;width:40px;height:22px;border-radius:999px;background:var(--line-2);position:relative;transition:.18s;
+}
+.a11y-opt .state::after{
+  content:"";position:absolute;inset-block-start:3px;inset-inline-start:3px;width:16px;height:16px;
+  border-radius:50%;background:#fff;transition:.18s;
+}
+.a11y-opt[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft)}
+.a11y-opt[aria-pressed="true"] .state{background:var(--brand)}
+.a11y-opt[aria-pressed="true"] .state::after{inset-inline-start:21px}
+.a11y-step{
+  flex:1;min-height:44px;border:2px solid var(--line-2);background:var(--surface);color:var(--ink);
+  border-radius:var(--r-sm);cursor:pointer;font-family:var(--font-head);font-weight:800;font-size:1rem;
+}
+.a11y-step:hover{border-color:var(--brand);background:var(--brand-soft)}
+.a11y-size{min-width:64px;text-align:center;font-family:var(--font-head);font-weight:800;align-self:center}
+.a11y-reset{
+  width:100%;min-height:44px;border-radius:var(--r-sm);border:2px solid var(--ink);
+  background:var(--ink);color:#fff;font-family:var(--font-head);font-weight:700;cursor:pointer;font-size:.95rem;
+}
+.a11y-reset:hover{background:var(--brand-dark);border-color:var(--brand-dark)}
+.a11y-foot{margin-block-start:14px;padding-block-start:14px;border-block-start:1px solid var(--line);font-size:.86rem}
+.a11y-foot a{font-weight:700}
+.a11y-overlay{position:fixed;inset:0;z-index:9000;background:rgba(26,20,64,.25)}
+.a11y-overlay[hidden]{display:none!important}
+
+/* ---------- mode: dark high contrast ---------- */
+html.a11y-dark{
+  --ink:#FFFFFF;--ink-2:#EDEDED;--bg:#000000;--surface:#0B0B0B;--surface-2:#141414;
+  --cream:#141414;--brand:#FFE44D;--brand-dark:#FFE44D;--brand-soft:#1C1C1C;
+  --line:#FFFFFF;--line-2:#FFFFFF;--sun:#FFE44D;--coral:#FF9C9C;--lime:#8CFF8C;
+  --cyan:#7FEAF6;--cyan-deep:#000000;--pink:#FFA6DC;
+  --shadow-sm:none;--shadow:none;--shadow-lg:none;
+}
+html.a11y-dark{--header-bg:#000000}
+html.a11y-dark body{background:#000}
+
+html.a11y-dark .btn-primary,html.a11y-dark .btn-accent{background:#FFE44D;color:#000;border-color:#fff}
+html.a11y-dark .btn-outline{color:#fff;border-color:#fff}
+html.a11y-dark .hero-blobs{display:none}
+html.a11y-dark .track-badge,html.a11y-dark .sem-n,html.a11y-dark .pillar-ico,html.a11y-dark .project-top,html.a11y-dark .stat-card,html.a11y-dark .guarantee,html.a11y-dark .price-flag,html.a11y-dark .price-opt,html.a11y-dark .price-save,html.a11y-dark .meet-flag,html.a11y-dark .senior-block,html.a11y-dark .chip{
+  background:#141414!important;color:#fff!important;border-color:#fff!important;
+}
+html.a11y-dark .chip[aria-pressed="true"]{background:#FFE44D!important;color:#000!important}
+
+html.a11y-dark .pillar::before{background:#FFE44D!important}
+
+/* ---------- mode: bright high contrast ---------- */
+html.a11y-light{
+  --ink:#000000;--ink-2:#000000;--bg:#FFFFFF;--surface:#FFFFFF;--surface-2:#FFFFFF;
+  --cream:#FFFFFF;--brand:#0000CC;--brand-dark:#0000CC;--brand-soft:#FFFFFF;
+  --line:#000000;--line-2:#000000;--sun:#FFFFFF;--coral:#FFFFFF;--lime:#FFFFFF;
+  --cyan:#FFFFFF;--cyan-deep:#0000CC;--pink:#FFFFFF;
+  --shadow-sm:none;--shadow:none;--shadow-lg:none;
+}
+html.a11y-light{--header-bg:#FFFFFF}
+html.a11y-light body{background:#fff}
+
+html.a11y-light .hero-blobs{display:none}
+html.a11y-light .btn-primary{background:#0000CC;color:#fff;border-color:#000}
+html.a11y-light .btn-accent{background:#fff;color:#000;border-color:#000}
+html.a11y-light .track-badge,html.a11y-light .sem-n,html.a11y-light .pillar-ico,html.a11y-light .project-top,html.a11y-light .stat-card,html.a11y-light .guarantee,html.a11y-light .price-opt,html.a11y-light .price-save,html.a11y-light .meet-flag,html.a11y-light .senior-block,html.a11y-light .chip{
+  background:#fff!important;color:#000!important;border:2px solid #000!important;
+}
+html.a11y-light .chip[aria-pressed="true"]{background:#0000CC!important;color:#fff!important}
+html.a11y-dark .price-opt.is-selected{border-color:#FFE44D!important;outline:3px solid #FFE44D}
+html.a11y-light .price-opt.is-selected{border-color:#0000CC!important;outline:3px solid #0000CC}
+html.a11y-light .price-flag{background:#0000CC!important;color:#fff!important}
+/* tokens that turn white for backgrounds must not be used as text colour here */
+
+html.a11y-light .eyebrow .dot{background:#000!important;box-shadow:none!important}
+html.a11y-light .hero h1 .hl{background:none!important;text-decoration:underline;text-underline-offset:4px}
+html.a11y-dark .hero h1 .hl{background:none!important;color:#FFE44D!important;text-decoration:underline;text-underline-offset:4px}
+
+/* ---------- mode: grayscale (scoped so the widget stays usable) ---------- */
+html.a11y-gray .site-header,html.a11y-gray main,html.a11y-gray .site-footer{filter:grayscale(1)}
+
+/* ---------- mode: highlight links ---------- */
+html.a11y-links a,html.a11y-links button{
+  text-decoration:underline!important;text-underline-offset:3px;outline:2px solid currentColor;outline-offset:2px;
+}
+html.a11y-links .a11y-panel a,html.a11y-links .a11y-panel button,html.a11y-links .a11y-btn{outline:none}
+
+/* ---------- mode: readable font ---------- */
+html.a11y-readable,html.a11y-readable body,
+html.a11y-readable h1,html.a11y-readable h2,html.a11y-readable h3,html.a11y-readable h4,
+html.a11y-readable .btn,html.a11y-readable .brand-text,html.a11y-readable .chip{
+  font-family:Arial,"Helvetica Neue",Helvetica,sans-serif!important;letter-spacing:normal!important;
+}
+
+/* ---------- mode: increased spacing (WCAG 1.4.12) ---------- */
+html.a11y-spacing p,html.a11y-spacing li,html.a11y-spacing div,html.a11y-spacing span,
+html.a11y-spacing a,html.a11y-spacing td,html.a11y-spacing th{
+  line-height:1.9!important;letter-spacing:.12em!important;word-spacing:.18em!important;
+}
+html.a11y-spacing p{margin-block-end:2em!important}
+html.a11y-spacing .a11y-panel *{line-height:1.5!important;letter-spacing:normal!important;word-spacing:normal!important}
+
+/* ---------- mode: stop animations ---------- */
+html.a11y-nomotion *,html.a11y-nomotion *::before,html.a11y-nomotion *::after{
+  animation:none!important;transition:none!important;scroll-behavior:auto!important;
+}
+
+/* ---------- mode: large cursor ---------- */
+html.a11y-cursor,html.a11y-cursor *{
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M10 4 38 24 25 26 32 41 26 44 19 29 10 36z' fill='%23fff' stroke='%23000' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 6 4,auto!important;
+}
+
+/* ---------- mode: enhanced keyboard focus ---------- */
+html.a11y-focus :focus{outline:4px solid #FF3B00!important;outline-offset:3px!important;border-radius:4px}
+html.a11y-focus :focus-visible{outline:4px solid #FF3B00!important;outline-offset:3px!important}
+
+
+  .a11y-btn{width:46px;height:46px;inset-block-end:12px;inset-inline-end:12px;border-width:2px}
+
+  .a11y-btn svg{width:26px;height:26px}
+
+  .a11y-panel{inset-block-end:66px;inset-inline:12px;width:auto}
+
+html.a11y-nomotion .hv-tile{animation:none!important}
+
+/* ---------- accessibility modes for the new parts ---------- */
+html.a11y-nomotion .float-chip,html.a11y-nomotion .spark svg,html.a11y-nomotion .flame{animation:none!important}
+html.a11y-dark .scene-screen,html.a11y-dark .float-chip,html.a11y-dark .stop-card,html.a11y-dark .cta-band-inner,html.a11y-dark .screen-bar{
+  background:#000!important;color:#fff!important;border-color:#fff!important;box-shadow:none!important;
+}
+html.a11y-dark .stop-card p,html.a11y-dark .stop-range,html.a11y-dark .stop-sem{color:#fff!important;background:transparent!important}
+html.a11y-dark .page-hero{background:#000}
+html.a11y-light .journey,html.a11y-light .page-hero{background:#fff;color:#000}
+html.a11y-light .journey-head h2,html.a11y-light .journey-head p,html.a11y-light .journey-legend,html.a11y-light .journey-count{color:#000!important}
+html.a11y-light .journey-sky{display:none}
+html.a11y-light .journey::before,html.a11y-light .journey::after,html.a11y-dark .journey::before,html.a11y-dark .journey::after{display:none}
+html.a11y-dark .kicker,html.a11y-dark .journey .kicker{background:#000!important;color:#FFE44D!important;border-color:#fff!important}
+html.a11y-light .kicker,html.a11y-light .journey .kicker{background:#fff!important;color:#000!important;border-color:#000!important}
+html.a11y-light .deco,html.a11y-dark .deco{display:none}
+html.a11y-light .stop-card,html.a11y-light .float-chip,html.a11y-light .scene-screen,html.a11y-light .cta-band-inner{
+  background:#fff!important;color:#000!important;border:2px solid #000!important;box-shadow:none!important;
+}
+html.a11y-light .cta-band h2,html.a11y-light .cta-band p{color:#000!important}
+html.a11y-light .jl-base{stroke:#000}
+html.a11y-light .stop-node{background:#fff!important;border-color:#000!important}
+html.a11y-light .node-range{color:#000!important}
+html.a11y-dark .stop-node{background:#000!important;border-color:#fff!important}
+html.a11y-nomotion .journey-kid .kid,html.a11y-nomotion .journey-kid *{animation:none!important}
+
+/* with large text (accessibility menu), the header call to action gets its own row on phones */
+@media (max-width:560px){
+  html.a11y-big .header-inner{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:6px 10px;padding-block:6px;min-height:0}
+  html.a11y-big .header-actions{display:contents}
+  html.a11y-big .header-inner > .brand{grid-column:1;grid-row:1}
+  html.a11y-big .lang-switch{grid-column:3;grid-row:1}
+  html.a11y-big .nav-toggle{grid-column:4;grid-row:1}
+  html.a11y-big .header-actions .btn-accent{grid-column:1/-1;grid-row:2;white-space:normal;padding-block:8px}
+}

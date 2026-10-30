@@ -1,0 +1,43 @@
+# ---------------------------------------------------------------
+# Netlify redirects — processed top to bottom, first match wins.
+# ---------------------------------------------------------------
+
+# Netlify's own address shows the same site; send it to the real domain so
+# search engines index one copy. (Unique deploy links, <id>--...netlify.app,
+# are other host names and keep working for previews.)
+https://ubiquitous-cactus-9412cc.netlify.app/*  https://future-gen.co.il/:splat  301!
+
+# English pages. An address with ?lang=en gets the pre-rendered English file
+# (built by _tools/inject.py), so search engines and link previews read English
+# without running JavaScript. Netlify's docs say the parameter list must match
+# exactly, but on the live site (checked 3 Oct 2026) extra parameters such as
+# ?lang=en&utm_source=... get the English file too. If that ever changes,
+# main.js still switches the Hebrew file to English in the browser.
+/                    lang=en  /index.en.html          200!
+/index.html          lang=en  /index.en.html          200!
+/syllabus            lang=en  /syllabus.en.html       200!
+/syllabus.html       lang=en  /syllabus.en.html       200!
+/accessibility       lang=en  /accessibility.en.html  200!
+/about               lang=en  /about.en.html          200!
+/about.html          lang=en  /about.en.html          200!
+/games               lang=en  /games.en.html          200!
+/games.html          lang=en  /games.en.html          200!
+/accessibility.html  lang=en  /accessibility.en.html  200!
+
+# Age-group landing links, e.g. for ads, an Instagram bio or WhatsApp.
+# A 200 rewrite keeps the address (and any ?utm_... tags) intact;
+# main.js reads the path and preselects the matching track.
+# Netlify matches a rule with or without a trailing slash, so /10-12/ also
+# lands here. (A "/10-12/ -> /10-12" redirect matched /10-12 itself and sent
+# it in an endless loop; never add one.)
+/10-12     /index.html    200
+/13-16     /index.html    200
+# At /10-12/ the page asks for its files under /10-12/ (assets/…): serve them
+# from the root.
+/10-12/*   /:splat        200
+/13-16/*   /:splat        200
+
+# Internal working files are not part of the public site.
+/README.md      /404.html    404!
+/_archive/*     /404.html    404!
+/_tools/*       /404.html    404!

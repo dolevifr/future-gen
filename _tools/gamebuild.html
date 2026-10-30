@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>בניית קבצי משחק הפרומפטים</title>
+<!-- Tailwind's in-browser compiler, pinned to one version. Only this local tool loads it, never the site. -->
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:640px;margin:40px auto;padding:0 16px;line-height:1.6;color:#1A1440;background:#fff}
+  li.ok{color:#2C5A16} li.err{color:#B3261E}
+  iframe{position:absolute;left:-10000px;top:0;width:1200px;height:675px;border:0}
+</style>
+</head>
+<body>
+<h1>בניית קבצי משחק הפרומפטים</h1>
+<p>פותחים את העמוד מהשרת המקומי (<code>python3 _tools/serve.py</code>, ואז
+<code>http://127.0.0.1:4321/_tools/gamebuild.html</code>). הוא כותב שני קבצים:
+<code>assets/game/tailwind.css</code>, עם כל מחלקות Tailwind שמופיעות ב-<code>game.html</code>
+וב-<code>game.js</code>, ו-<code>assets/game/poster.jpg</code>, תמונת המשחק לדף הבית ולשיתוף.
+מריצים אותו שוב אחרי שינוי מחלקות במשחק או במראה שלו.</p>
+<ol id="log"></ol>
+<div id="classes" hidden></div>
+<script>
+function log(text, cls) {
+  var li = document.createElement("li");
+  li.textContent = text; if (cls) li.className = cls;
+  document.getElementById("log").appendChild(li);
+}
+function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+function post(file, body) {
+  return fetch("/__game?file=" + file, { method: "POST", body: body }).then(function (res) {
+    if (!res.ok) throw new Error(file + ": the local server answered " + res.status);
+  });
+}
+
+/* Every class name in the page and in the script: class="…", className = '…'
+   and classList.add/remove/toggle('…'). The same rules the game was written with. */
+function classesIn(path) {
+  return fetch(path, { cache: "no-store" }).then(function (r) { return r.text(); }).then(function (text) {
+    var found = {}, m, q;
+    var attr = /class(?:Name)?\s*=\s*["'`]([^"'`]+)["'`]/g, list = /classList\.(?:add|remove|toggle)\(([^)]*)\)/g;
+    while ((m = attr.exec(text))) m[1].split(/\s+/).forEach(function (c) { if (c && c.indexOf("${") < 0) found[c] = 1; });
+    while ((m = list.exec(text))) {
+      var quoted = /['"]([^'"]+)['"]/g;
+      while ((q = quoted.exec(m[1]))) found[q[1]] = 1;
+    }
+    return Object.keys(found);
+  });
+}
+
+function buildCss() {
+  return Promise.all([classesIn("../game.html"), classesIn("../assets/game/game.js")]).then(function (lists) {
+    var all = lists[0].concat(lists[1]).filter(function (c, i, a) { return a.indexOf(c) === i; });
+    document.getElementById("classes").className = all.join(" ");
+    /* the compiler answers the change above; wait until its output stops changing */
+    var css = "", same = 0, tries = 0;
+    function poll() {
+      var style = Array.prototype.find.call(document.querySelectorAll("style"), function (s) {
+        return s.textContent.indexOf("tailwindcss") > -1;
+      });
+      var now = style ? style.textContent : "";
+      same = now && now === css ? same + 1 : 0;
+      css = now;
+      if (same >= 3) return css;
+      if (++tries > 60) throw new Error("Tailwind didn't load (is there an internet connection?)");
+      return sleep(150).then(poll);
+    }
+    return sleep(150).then(poll).then(function (css) {
+      var head = "/* Built by _tools/gamebuild.html from the classes in game.html and game.js.\n" +
+                 "   Don't edit by hand: change the classes there and run the tool again. */\n";
+      return post("tailwind", head + css).then(function () {
+        log("tailwind.css: " + all.length + " classes, " + Math.round(css.length / 1024) + " KB", "ok");
+      });
+    });
+  });
+}
+
+/* The picture: level 1 as the game opens, from above and behind the hero,
+   mid-jump with the sword up and the way to the portal ahead. */
+function buildPoster() {
+  return new Promise(function (resolve, reject) {
+    var f = document.createElement("iframe");
+    f.onload = function () {
+      var w = f.contentWindow, tries = 0;
+      (function wait() {
+        var ready = false;
+        try { ready = w.eval("typeof renderer !== 'undefined' && !!renderer && !!playerGroup"); } catch (e) { /* still loading */ }
+        if (!ready) {
+          if (++tries > 80) return reject(new Error("the game didn't start in the frame"));
+          return setTimeout(wait, 100);
+        }
+        w.requestAnimationFrame = function () { return 0; };   /* stop the game's own drawing */
+        setTimeout(function () {
+          try {
+            var g = w.eval("({ camera: camera, renderer: renderer, scene: scene, hero: playerGroup, arm: rightArmGroup })");
+            g.hero.position.set(0.4, 1.9, -1.4);
+            g.hero.rotation.y = Math.PI - 0.5;
+            g.arm.rotation.x = -Math.PI / 2;
+            g.renderer.setPixelRatio(1);
+            g.renderer.setSize(1200, 675, false);
+            g.camera.aspect = 1200 / 675;
+            g.camera.fov = 60;
+            g.camera.updateProjectionMatrix();
+            g.camera.position.set(3.4, 7.4, 4.6);
+            g.camera.lookAt(-1.4, 0.6, -13);
+            g.renderer.render(g.scene, g.camera);
+            g.renderer.domElement.toBlob(function (blob) {
+              if (!blob) return reject(new Error("the picture came out empty"));
+              post("poster", blob).then(function () {
+                log("poster.jpg: 1200×675, " + Math.round(blob.size / 1024) + " KB", "ok");
+                resolve();
+              }, reject);
+            }, "image/jpeg", 0.86);
+          } catch (e) { reject(e); }
+        }, 120);
+      })();
+    };
+    f.src = "../game.html";
+    document.body.appendChild(f);
+  });
+}
+
+buildCss().then(buildPoster).then(function () {
+  log("הסתיים. עכשיו לבדוק את game.html, ולהעלות את האתר מחדש.", "ok");
+}, function (err) {
+  log("שגיאה: " + err.message, "err");
+});
+</script>
+</body>
+</html>

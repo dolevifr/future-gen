@@ -1,0 +1,24 @@
+# ---------------------------------------------------------------
+# Netlify response headers.
+# ---------------------------------------------------------------
+# payment=() blocks in-page payment APIs. If the payment provider runs inside
+# the page (not on its own page), remove "payment=()" and add its domain to
+# the Content-Security-Policy below (script-src / frame-src / connect-src).
+# What the pages may load. The sha256 value is the small inline script in the
+# <head> of index/syllabus/accessibility: if it changes, its hash must be
+# updated (README, "אבטחה"). cloud.umami.is serves the visitor-statistics
+# script and gateway.umami.is receives the counts (analytics.js).
+# widget.tabnav.com serves the accessibility button (script, stylesheet,
+# fixes) and widget-config.tabnav.com its settings for this domain.
+# script.google.com (and script.googleusercontent.com, where it redirects the
+# answer) receives the signed registration from register.html (register.js).
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-QFGtbc+swHH4JNNSwXFbRYp/ECvyWN3aGnllHyEoDds=' https://cloud.umami.is https://widget.tabnav.com https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://widget.tabnav.com; img-src 'self' data: https://widget.tabnav.com https://www.facebook.com https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self' https://widget.tabnav.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://gateway.umami.is https://widget.tabnav.com https://widget-config.tabnav.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://www.facebook.com https://connect.facebook.net; media-src 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+
+# Font files never change once published, so browsers may keep them for a year.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

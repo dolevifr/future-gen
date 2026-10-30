@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+/* a refresh starts at the top: drop the #section and the remembered scroll position */
+try{var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){history.scrollRestoration="manual";addEventListener("pagehide",function(){history.scrollRestoration="auto"});if(location.hash)history.replaceState(history.state,"",location.pathname+location.search)}}catch(e){}
+function fgVT(e){var v=e.viewTransition;if(!v)return;v.ready.catch(function(){});v.finished.catch(function(){})}
+addEventListener("pagereveal",fgVT);addEventListener("pageswap",fgVT);
+</script>
+<title>משחקים — FutureGen Academy</title>
+<meta name="description" content="משחקים קצרים לילדים ונוער שמתרגלים כישורים מהחוג, כמו כתיבת פרומפט לבינה מלאכותית. במחשב ובטלפון, בלי הרשמה.">
+<link rel="canonical" href="https://future-gen.co.il/games">
+<link rel="alternate" hreflang="he" href="https://future-gen.co.il/games">
+<link rel="alternate" hreflang="en" href="https://future-gen.co.il/games?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://future-gen.co.il/games">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FutureGen Academy">
+<meta property="og:locale" content="he_IL">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:url" content="https://future-gen.co.il/games">
+<meta property="og:title" content="משחקים — FutureGen Academy">
+<meta property="og:description" content="משחקים קצרים לילדים ונוער שמתרגלים כישורים מהחוג, כמו כתיבת פרומפט לבינה מלאכותית. במחשב ובטלפון, בלי הרשמה.">
+<meta property="og:image" content="https://future-gen.co.il/assets/game/poster.jpg?v=1">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta property="og:image:alt" content="משחק הפרומפטים: גיבור על פלטפורמות מרחפות מעל לבה, בדרך לפורטל השאלות.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="משחקים — FutureGen Academy">
+<meta name="twitter:description" content="משחקים קצרים לילדים ונוער שמתרגלים כישורים מהחוג, כמו כתיבת פרומפט לבינה מלאכותית. במחשב ובטלפון, בלי הרשמה.">
+<meta name="twitter:image" content="https://future-gen.co.il/assets/game/poster.jpg?v=1">
+<meta name="theme-color" content="#6B4EFF">
+<link rel="icon" href="assets/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="assets/apple-touch-icon.png" type="image/png" sizes="180x180">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=4">
+<link rel="stylesheet" href="assets/css/styles.css?v=4">
+</head>
+<body data-page="games">
+<a class="skip-link" href="#main" data-i18n="a11y.skip">דילוג לתוכן הראשי</a>
+
+<!-- ============ HEADER (same on index, syllabus, about, games and accessibility) ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="brand" href="./" aria-label="FutureGen Academy">
+      <span class="brand-mark" aria-hidden="true"><img src="assets/logo-mark.png" alt="" width="44" height="41" decoding="async"></span>
+      <span class="brand-text"><b>FutureGen</b><span data-i18n="brand.suffix">Academy</span></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav" data-i18n-aria="aria-label:a11y.nav" aria-label="ניווט ראשי">
+      <a href="./#program" data-i18n="nav.program">התוכנית</a>
+      <a href="./#learn" data-i18n="nav.learn">מה לומדים</a>
+      <a href="./#journey" data-i18n="nav.journey">המסע</a>
+      <a href="./#plans" data-i18n="nav.plans">מחירים</a>
+      <a href="./#faq" data-i18n="nav.faq">שאלות נפוצות</a>
+      <!-- sections of the home page above; separate pages below the divider -->
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a class="nav-page" href="syllabus.html" data-page="syllabus"><span data-i18n="nav.syllabus">הסילבוס המלא</span></a>
+      <a class="nav-page" href="games.html" data-page="games"><span data-i18n="nav.games">משחקים</span></a>
+      <a class="nav-page" href="about.html" data-page="about"><span data-i18n="nav.about">אודות</span></a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" role="group" data-i18n-aria="aria-label:a11y.langGroup" aria-label="בחירת שפה">
+        <button type="button" class="lang-btn is-active" data-lang="he" lang="he">עב</button>
+        <button type="button" class="lang-btn" data-lang="en" lang="en">EN</button>
+      </div>
+      <a class="btn btn-accent" href="./#contact" data-i18n="btn.cta" data-ev="cta_header">לפרטים והרשמה</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" data-i18n-aria="aria-label:a11y.menu" aria-label="פתיחת תפריט">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-hero">
+  <div class="page-hero-art" aria-hidden="true">
+    <span class="layer" data-speed="0.25"><span class="spark s1"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0 L14.6 9.4 L24 12 L14.6 14.6 L12 24 L9.4 14.6 L0 12 L9.4 9.4Z"/></svg></span><span class="spark s3"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0 L14.6 9.4 L24 12 L14.6 14.6 L12 24 L9.4 14.6 L0 12 L9.4 9.4Z"/></svg></span></span>
+    <span class="layer" data-speed="-0.2"><span class="spark s2"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0 L14.6 9.4 L24 12 L14.6 14.6 L12 24 L9.4 14.6 L0 12 L9.4 9.4Z"/></svg></span><span class="ring"></span></span>
+  </div>
+  <div class="container">
+    <h1 data-i18n="gm.title">משחקים</h1>
+    <p class="lead" data-i18n="gm.sub">משחקים קצרים שמתרגלים כישורים מהחוג. נכנסים ומשחקים, במחשב או בטלפון, בלי הרשמה.</p>
+  </div>
+</section>
+
+<!-- The cards are rendered from GAMES in data.js (renderGames in main.js) and pre-rendered
+     here by the snapshot (README, "רינדור מוקדם"). To add a game, add it to GAMES. -->
+<section class="section games-page" aria-labelledby="gamesListTitle">
+  <div class="container">
+    <h2 class="sr-only" id="gamesListTitle" data-i18n="gm.title">משחקים</h2>
+    <div class="game-grid rk" id="gameGrid" data-reveal><article class="game-tile"><div class="game-tile-shot"><img src="assets/game/poster.jpg?v=1" width="1200" height="675" alt="" loading="lazy" decoding="async"><span class="game-tile-play" aria-hidden="true">▶</span></div><div class="game-tile-body"><ul class="game-tile-tags"><li>תלת-ממד</li><li>3 שלבים</li><li>15 שאלות</li></ul><h2><a class="game-tile-link" href="game.html" data-ev="cta_games_card">חילוץ הנסיכה: מסע הפרומפט המושלם</a></h2><p>קופצים על פלטפורמות מעל לבה, נלחמים בקיפודים ועונים על 15 שאלות בסגנון ״מי רוצה להיות מיליונר״ כדי לחלץ את הנסיכה.</p><p class="game-tile-learn"><b>מה לומדים:</b> לכתוב פרומפט לפי נוסחת ת.מ.ח.ס: תפקיד, משימה, חוקים וסגנון. הנוסחה של המפגש הראשון בחוג.</p><span class="btn btn-primary game-tile-cta" aria-hidden="true">לשחק</span></div></article></div>
+    <div class="games-note" data-reveal="up">
+      <span class="games-note-ico" aria-hidden="true">🛡️</span>
+      <p><b data-i18n="gm.parentsH">להורים</b> <span data-i18n="gm.parents">המשחקים רצים בדפדפן, בלי הורדה ובלי הרשמה, ולא מבקשים שום פרט אישי.</span>
+        <span data-i18n="gm.more">משחקים נוספים יעלו כאן בהמשך.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-band-inner" data-reveal="up">
+    <div>
+      <h2 data-i18n="cta.title">רוצים לשמוע עוד?</h2>
+      <p data-i18n="cta.sub">משאירים פרטים, ונחזור אליכם כדי להתאים קבוצה לפי גיל ורמה.</p>
+    </div>
+    <a class="btn btn-accent btn-lg" href="./#contact" data-i18n="btn.cta" data-ev="cta_band">לפרטים והרשמה</a>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand brand-light" href="./">
+        <span class="brand-mark" aria-hidden="true"><img src="assets/logo-mark.png" alt="" width="44" height="41" decoding="async"></span>
+        <span class="brand-text"><b>FutureGen</b><span data-i18n="brand.suffix">Academy</span></span>
+      </a>
+      <p class="footer-tagline">TECHNOLOGY &amp; INNOVATION</p>
+      <p class="footer-about" data-i18n="footer.about">פיוצ׳ר ג׳ן אקדמי — חוג שנתי אונליין לבינה מלאכותית, יזמות ואוריינות פיננסית לילדים ונוער בגילאי 10‎–⁠‎16‏. בונים את הדור הבא של היוצרים.</p>
+    </div>
+    <div>
+      <h3 data-i18n="footer.c1">התוכנית</h3>
+      <ul id="footerTracks"><li><a href="syllabus.html?track=junior" data-track="junior">גילאי 10‎–⁠‎12‏</a></li><li><a href="syllabus.html?track=senior" data-track="senior">גילאי 13‎–⁠‎16‏</a></li><li><a href="syllabus.html?sem=a" data-filter="a">סמסטר א׳</a></li><li><a href="syllabus.html?sem=b" data-filter="b">סמסטר ב׳</a></li></ul>
+    </div>
+    <div>
+      <h3 data-i18n="footer.c2">האקדמיה</h3>
+      <ul>
+        <li><a href="about.html" data-i18n="nav.about">אודות</a></li>
+        <li><a href="games.html" data-i18n="nav.games">משחקים</a></li>
+        <li><a href="./#about" data-i18n="about.title">למה הורים בוחרים <span class="nowrap">ב-FutureGen</span></a></li>
+        <li><a href="./#plans" data-i18n="footer.plans">מחיר והרשמה</a></li>
+        <li><a href="./#faq" data-i18n="nav.faq">שאלות נפוצות</a></li>
+        <li><a href="./#contact" data-i18n="footer.careers">הצטרפות כמנטור/ית</a></li>
+        <li><a href="accessibility.html" data-i18n="st.title">הצהרת נגישות</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 data-i18n="footer.c3">יצירת קשר</h3>
+      <ul>
+        <li><a href="tel:+972525281662" dir="ltr">052-5281662</a></li>
+        <li><a href="mailto:fgacademy.il@gmail.com" dir="ltr">fgacademy.il@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© <span id="year">2026</span> FutureGen Academy</p>
+    <p class="footer-links"><a href="privacy.html" data-i18n="footer.privacy">מדיניות פרטיות</a> <span class="sep" aria-hidden="true">·</span> <a href="terms.html" data-i18n="footer.terms">תנאי שימוש</a> <span class="sep" aria-hidden="true">·</span> <a href="cancel.html" data-i18n="footer.cancel">ביטול עסקה</a> <span class="sep" aria-hidden="true">·</span> <a href="privacy.html#p-cookies" data-cookie-settings data-i18n="footer.cookies">בלי עוגיות מעקב</a></p>
+  </div>
+</footer>
+
+<!-- floating WhatsApp button; the <aside> gives it a landmark for screen readers -->
+<aside>
+  <a class="wa-btn" href="https://wa.me/972525281662" target="_blank" rel="noopener"
+     aria-label="שיחה איתנו בוואטסאפ" data-i18n-aria="aria-label:wa.label">
+    <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" focusable="false">
+      <path fill="#fff" d="M16 3C8.8 3 3 8.6 3 15.6c0 2.5.7 4.8 2 6.8L3.6 29l6.8-1.8c1.8 1 3.8 1.5 5.9 1.5 7.2 0 13-5.6 13-12.6S23.2 3 16 3z"/>
+      <path fill="currentColor" d="M16 5.4c5.9 0 10.7 4.6 10.7 10.2S21.9 25.8 16 25.8c-1.9 0-3.7-.5-5.3-1.4l-.4-.2-4 1 1.1-3.8-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.3 10 10.1 5.4 16 5.4z"/>
+      <path fill="#fff" d="M12.2 10.2c-.3-.6-.6-.6-.9-.6h-.7c-.3 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.2 2.6 4.1 6.4 5.6 3.1 1.2 3.8 1 4.5.9.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5l-2.4-1.2c-.3-.1-.6-.2-.8.2-.2.4-.9 1.2-1.1 1.4-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.6.1-.2.1-.5 0-.7l-1.4-3.2z"/>
+    </svg>
+  </a>
+</aside>
+
+<script src="assets/js/i18n.js?v=4"></script>
+<script src="assets/js/data.js?v=4"></script>
+<script src="assets/js/main.js?v=4"></script>
+<script src="assets/js/motion.js?v=4"></script>
+<script src="assets/js/analytics.js?v=4"></script>
+<!-- accessibility button and menu (TAB-NAV); a11y-lang.js opens the menu in the page's language -->
+<script src="assets/js/a11y-lang.js?v=4"></script>
+<script src="https://widget.tabnav.com/widget.min.js.gz" defer></script>
+</body>
+</html>

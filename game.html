@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>משחק הפרומפטים: חילוץ הנסיכה | FutureGen Academy</title>
+<meta name="description" content="משחק תלת-ממדי שמלמד לכתוב פרומפט לבינה מלאכותית לפי נוסחת ת.מ.ח.ס: 3 שלבים ו-15 שאלות בסגנון מי רוצה להיות מיליונר. במחשב עם המקלדת, בטלפון ובטאבלט עם כפתורי מגע.">
+<link rel="canonical" href="https://future-gen.co.il/game">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FutureGen Academy">
+<meta property="og:locale" content="he_IL">
+<meta property="og:url" content="https://future-gen.co.il/game">
+<meta property="og:title" content="משחק הפרומפטים: חילוץ הנסיכה | FutureGen Academy">
+<meta property="og:description" content="3 שלבים בתלת-ממד ו-15 שאלות על נוסחת ת.מ.ח.ס לכתיבת פרומפט. טעימה מהמפגש הראשון בחוג.">
+<meta property="og:image" content="https://future-gen.co.il/assets/game/poster.jpg?v=1">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta property="og:image:alt" content="משחק הפרומפטים: גיבור על פלטפורמות מרחפות מעל לבה, בדרך לפורטל השאלות.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://future-gen.co.il/assets/game/poster.jpg?v=1">
+<meta name="theme-color" content="#090a0f">
+<link rel="icon" href="assets/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=4">
+<!-- the game's look: the Tailwind classes it uses, built into a plain file by _tools/gamebuild.html,
+     then its own rules (README, "משחק הפרומפטים") -->
+<link rel="stylesheet" href="assets/game/tailwind.css?v=1">
+<link rel="stylesheet" href="assets/game/game.css?v=1">
+</head>
+<body class="relative w-screen h-screen overflow-hidden select-none bg-slate-950">
+
+  <!-- 3D Canvas -->
+  <canvas id="game-canvas" aria-label="המשחק בתלת-ממד"></canvas>
+
+  <!-- HUD Overlay -->
+  <div id="hud" class="absolute top-0 left-0 w-full p-4 pointer-events-none flex justify-between items-start z-10">
+    <!-- Player Stats -->
+    <div id="hud-stats" class="flex items-center gap-4 bg-slate-900/90 backdrop-blur border border-amber-500/40 px-5 py-3 rounded-2xl shadow-xl pointer-events-auto">
+      <div class="flex items-center gap-1 text-2xl text-red-500" id="hearts-container">
+        <span class="heart text-2xl inline-block transition-transform duration-200 hover:scale-125 drop-shadow" aria-hidden="true">❤️</span><span class="heart text-2xl inline-block transition-transform duration-200 hover:scale-125 drop-shadow" aria-hidden="true">❤️</span><span class="heart text-2xl inline-block transition-transform duration-200 hover:scale-125 drop-shadow" aria-hidden="true">❤️</span><span class="lives-count text-xs font-bold text-red-400 mr-1 select-none">(3/3 חיים)</span>
+      </div>
+      <div class="h-6 w-px bg-slate-700"></div>
+      <div class="flex items-center gap-2 text-amber-400 font-bold text-lg">
+        <span aria-hidden="true">🪙</span><span class="sr-only">נקודות:</span>
+        <span id="score-val">0</span>
+      </div>
+      <div class="h-6 w-px bg-slate-700"></div>
+      <div class="flex items-center gap-2 text-indigo-400 font-bold text-lg">
+        <span aria-hidden="true">🏆</span>
+        <span id="level-title-hud">שלב 1</span>
+      </div>
+    </div>
+
+    <div id="hud-side">
+      <!-- Quest Banner -->
+      <div id="quest-box" class="bg-slate-900/90 backdrop-blur border border-indigo-500/40 px-6 py-3 rounded-2xl shadow-xl text-right pointer-events-auto max-w-md">
+        <div class="text-xs text-indigo-400 font-semibold uppercase tracking-wider flex items-center gap-2">
+          <span aria-hidden="true">📜</span> משימה נוכחית
+        </div>
+        <div id="quest-text" class="text-sm font-bold text-slate-100 mt-1">
+          שלב 1 (3 קפיצות): הילחם בקיפודים בחרב (מקש S), אסוף קריסטלים והגע לפורטל!
+        </div>
+      </div>
+
+      <!-- back to the site (game.js asks first in the middle of a game) -->
+      <a id="home-link" href="index.html" class="pointer-events-auto" aria-label="חזרה לאתר FutureGen Academy">
+        <img src="assets/logo-mark.png" alt="" width="28" height="26">
+        <span aria-hidden="true">לאתר</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Controls Reminder Overlay (keyboard; touch screens get the buttons below instead) -->
+  <div id="keys-help" class="absolute bottom-4 right-4 bg-slate-900/80 backdrop-blur border border-slate-700/60 p-4 rounded-xl shadow-lg pointer-events-none text-xs text-slate-300 z-10 flex flex-col gap-1.5">
+    <div class="font-bold text-amber-400 text-sm mb-1"><span aria-hidden="true">🎮</span> מקשי שליטה:</div>
+    <div><span class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono">W A D</span> / <span class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono">חיצים</span> : תזוזה</div>
+    <div><span class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono">Space</span> : קפיצה (להתחמקות מכדורים!)</div>
+    <div><span class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono">S</span> / <span class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono">E</span> / <span class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono">קליק</span> : התקפה בחרב</div>
+    <div><span class="bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded font-mono">Shift</span> : ריצה מהירה</div>
+  </div>
+
+  <!-- Touch controls: the left half is the joystick, the buttons are on the right
+       (game.js, "Touch controls"). Shown only on touch screens, while playing. -->
+  <div id="touch-ui" aria-hidden="true">
+    <div id="stick-zone">
+      <div id="stick-base"><div id="stick-knob"></div></div>
+    </div>
+    <button type="button" id="btn-sword" class="touch-btn" tabindex="-1"><span class="ico">⚔️</span><span class="lbl">חרב</span></button>
+    <button type="button" id="btn-jump" class="touch-btn" tabindex="-1"><span class="ico">⬆</span><span class="lbl">קפיצה</span></button>
+  </div>
+
+  <!-- Intro Story Modal -->
+  <div id="intro-modal" class="game-modal fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="intro-title" tabindex="-1">
+    <div class="modal-card bg-slate-900 border-2 border-amber-500/60 rounded-3xl p-8 max-w-2xl w-full text-center shadow-2xl gold-glow relative overflow-hidden">
+      <!-- Decorative Header -->
+      <div class="w-20 h-20 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl border border-amber-500/50" aria-hidden="true">
+        👑
+      </div>
+      <h1 id="intro-title" class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 mb-3">
+        חילוץ הנסיכה - מסע הפרומפט המושלם
+      </h1>
+      <p class="text-slate-300 text-base md:text-lg leading-relaxed mb-6">
+        הנבל הרשע חטף את הנסיכה! <br>
+        עליך לעבור 3 שלבים תלת-ממדיים ולפתור את <strong class="text-slate-100">15 שאלות המיליונר (100 ₪ עד 1,000,000 ₪)</strong> על נוסחת <strong class="text-slate-100">ת.מ.ח.ס</strong> כדי לחלץ אותה!
+      </p>
+
+      <div class="bg-slate-800/80 rounded-2xl p-4 mb-6 border border-slate-700 text-right text-sm text-slate-300 flex flex-col gap-2">
+        <div class="font-bold text-amber-400 mb-1"><span aria-hidden="true">🎓</span> נוסחת ת.מ.ח.ס שתלמד:</div>
+        <div>✓ <strong>ת'</strong> - תפקיד (<bdi>Role</bdi>)</div>
+        <div>✓ <strong>מ'</strong> - משימה (<bdi>Task</bdi>)</div>
+        <div>✓ <strong>ח'</strong> - חוקים ואילוצים (<bdi>Constraints</bdi>)</div>
+        <div>✓ <strong>ס'</strong> - סגנון ופורמט (<bdi class="nowrap">Style &amp; Format</bdi>)</div>
+      </div>
+
+      <!-- how to play: the keyboard or the touch version, whichever this screen uses -->
+      <p class="how-to only-keys text-sm text-slate-300 mb-6">
+        <span aria-hidden="true">⌨️</span> חיצים או W A D לתזוזה · רווח לקפיצה · S, E או קליק לחרב · Shift לריצה
+      </p>
+      <p class="how-to only-touch text-sm text-slate-300 mb-6">
+        <span aria-hidden="true">👆</span> גוררים את האגודל בצד שמאל של המסך כדי לזוז (עד הסוף = ריצה) · כפתור <span aria-hidden="true">⬆</span> לקפיצה · כפתור <span aria-hidden="true">⚔️</span> לחרב. לרוחב רואים יותר.
+      </p>
+
+      <button id="start-game-btn" class="w-full py-4 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-slate-950 font-black text-xl rounded-2xl transition transform hover:scale-105 shadow-xl cursor-pointer">
+        <span class="ml-2" aria-hidden="true">▶</span> התחל במסע לחילוץ הנסיכה!
+      </button>
+      <noscript><p class="no-webgl">כדי לשחק צריך להפעיל JavaScript בדפדפן.</p></noscript>
+      <a class="back-link" href="index.html">חזרה לאתר FutureGen Academy</a>
+    </div>
+  </div>
+
+  <!-- Millionaire Trivia Quiz Modal -->
+  <div id="quiz-modal" class="game-modal fixed inset-0 bg-slate-950/95 backdrop-blur-xl z-50 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-label="שאלון המיליונר" tabindex="-1">
+    <div class="modal-card bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border-2 border-amber-500/70 rounded-3xl p-6 md:p-8 max-w-3xl w-full shadow-2xl gold-glow relative">
+
+      <!-- Quiz Header -->
+      <div class="quiz-head flex justify-between items-center mb-6 border-b border-slate-800 pb-4">
+        <div>
+          <div class="quiz-badges flex items-center gap-2 mb-1">
+            <span id="quiz-level-badge" class="px-3 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded-full text-xs font-bold">
+              שלב 1: שאלות חימום
+            </span>
+            <span id="quiz-prize-badge" class="px-3 py-1 bg-yellow-500/20 text-yellow-300 border border-yellow-500/40 rounded-full text-xs font-black">
+              100 ₪
+            </span>
+          </div>
+          <h2 id="quiz-question-num" class="text-slate-400 text-xs font-semibold">שאלה 1 מתוך 5</h2>
+        </div>
+
+        <!-- Timer Circle -->
+        <div class="relative w-16 h-16 flex items-center justify-center shrink-0" aria-hidden="true">
+          <svg class="w-full h-full transform -rotate-90">
+            <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="4" class="text-slate-800" fill="transparent"/>
+            <circle id="timer-progress" cx="32" cy="32" r="26" stroke="currentColor" stroke-width="4" class="text-amber-400 timer-ring" fill="transparent" stroke-dasharray="163.3" stroke-dashoffset="0"/>
+          </svg>
+          <span id="timer-text" class="absolute text-lg font-black text-amber-400">25</span>
+        </div>
+      </div>
+
+      <!-- Question Box -->
+      <div class="question-box bg-slate-800/90 border border-amber-500/30 rounded-2xl p-6 mb-6 text-center shadow-inner">
+        <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-100 leading-snug">
+          טוען שאלה...
+        </h3>
+      </div>
+
+      <!-- Options Grid -->
+      <div class="options-grid grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <button class="quiz-option-btn p-4 rounded-2xl text-right flex items-center gap-3 cursor-pointer" data-index="0">
+          <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-bold text-sm shrink-0">א</span>
+          <span class="option-text text-sm font-medium text-slate-200">אופציה א'</span>
+        </button>
+        <button class="quiz-option-btn p-4 rounded-2xl text-right flex items-center gap-3 cursor-pointer" data-index="1">
+          <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-bold text-sm shrink-0">ב</span>
+          <span class="option-text text-sm font-medium text-slate-200">אופציה ב'</span>
+        </button>
+        <button class="quiz-option-btn p-4 rounded-2xl text-right flex items-center gap-3 cursor-pointer" data-index="2">
+          <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-bold text-sm shrink-0">ג</span>
+          <span class="option-text text-sm font-medium text-slate-200">אופציה ג'</span>
+        </button>
+        <button class="quiz-option-btn p-4 rounded-2xl text-right flex items-center gap-3 cursor-pointer" data-index="3">
+          <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-bold text-sm shrink-0">ד</span>
+          <span class="option-text text-sm font-medium text-slate-200">אופציה ד'</span>
+        </button>
+      </div>
+
+      <!-- Feedback Banner -->
+      <div id="quiz-feedback" class="bg-emerald-950/80 border border-emerald-500/50 rounded-2xl p-4 mb-6 hidden" aria-live="polite">
+        <div id="feedback-title" class="font-bold text-emerald-400 text-base mb-1 flex items-center gap-2">
+          <span aria-hidden="true">✅</span> נכון מאוד!
+        </div>
+        <div id="feedback-explanation" class="text-xs md:text-sm text-slate-300 leading-relaxed">
+          הסבר לימודי...
+        </div>
+      </div>
+
+      <!-- Footer Buttons -->
+      <div class="flex justify-between items-center">
+        <button id="hint-btn" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer">
+          <span aria-hidden="true">💡</span> רמז (50:50)
+        </button>
+
+        <button id="next-question-btn" class="px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-slate-950 font-bold rounded-xl transition shadow-lg hidden cursor-pointer">
+          המשך לשאלה הבאה <span class="mr-2" aria-hidden="true">←</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Victory & Certificate Modal -->
+  <div id="victory-modal" class="game-modal fixed inset-0 bg-slate-950/95 backdrop-blur-2xl z-50 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="victory-title" tabindex="-1">
+    <div class="modal-card bg-slate-900 border-2 border-yellow-400/80 rounded-3xl p-8 max-w-2xl w-full text-center shadow-2xl gold-glow relative">
+      <div class="w-24 h-24 bg-amber-500/20 text-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4 text-5xl border-2 border-yellow-400 animate-bounce" aria-hidden="true">
+        🏆
+      </div>
+      <h1 id="victory-title" class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 mb-2">
+        זכית ב-1,000,000 ₪ והצלת את הנסיכה! <span aria-hidden="true">🏆</span>
+      </h1>
+      <p class="text-slate-300 text-base mb-6">
+        ענית נכון על שאלת המיליונר, הוכחת שליטה מלאה בנוסחת ת.מ.ח.ס והצלת את הממלכה!
+      </p>
+
+      <!-- Certificate Box -->
+      <div class="bg-gradient-to-br from-slate-950 to-slate-900 border-2 border-amber-400/60 rounded-2xl p-6 mb-6 text-center relative shadow-inner">
+        <div class="text-xs text-amber-400 font-bold uppercase tracking-widest mb-1">תעודת הצטיינות רשמית</div>
+        <div class="text-2xl font-black text-slate-100 mb-2">מאסטר הפרומפטים המושלם <span aria-hidden="true">🎓</span></div>
+        <div class="text-xs text-slate-400 mb-4">מוענקת על השלמת 15 שאלות המיליונר על נוסחת ת.מ.ח.ס!</div>
+        <div class="flex justify-center gap-6 text-sm text-amber-300 font-bold">
+          <div>פרס כספי: <span id="final-score-val" class="text-white">1,000,000 ₪</span></div>
+          <div>תשובות נכונות: <span id="final-correct-val" class="text-white" dir="ltr">15 / 15</span></div>
+        </div>
+      </div>
+
+      <button id="restart-game-btn" class="w-full py-4 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-slate-950 font-black text-lg rounded-2xl transition transform hover:scale-105 shadow-xl cursor-pointer">
+        <span class="ml-2" aria-hidden="true">🔄</span> שחק שוב!
+      </button>
+      <a class="back-link" href="index.html">חזרה לאתר FutureGen Academy</a>
+    </div>
+  </div>
+
+  <!-- Game Over Modal -->
+  <div id="gameover-modal" class="game-modal fixed inset-0 bg-slate-950/95 backdrop-blur-xl z-50 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="gameover-title" tabindex="-1">
+    <div class="modal-card bg-slate-900 border-2 border-red-500/80 rounded-3xl p-8 max-w-md w-full text-center shadow-2xl relative">
+      <div class="w-20 h-20 bg-red-500/20 text-red-500 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl border border-red-500/50" aria-hidden="true">
+        💔
+      </div>
+      <h2 id="gameover-title" class="text-3xl font-black text-red-400 mb-2">נגמרו לך החיים!</h2>
+      <p id="gameover-msg" class="text-slate-300 text-base font-semibold mb-6">
+        נגמרו לך החיים, התחל את השלב מהתחלה.
+      </p>
+      <button id="retry-level-btn" class="w-full py-4 bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-black text-lg rounded-2xl transition transform hover:scale-105 shadow-xl cursor-pointer">
+        <span class="ml-2" aria-hidden="true">🔄</span> התחל את השלב מהתחלה
+      </button>
+      <a class="back-link" href="index.html">חזרה לאתר FutureGen Academy</a>
+    </div>
+  </div>
+
+  <!-- Three.js r128 (MIT), served from the site; then the questions and the game -->
+  <script src="assets/game/three.min.js?v=r128"></script>
+  <script src="assets/game/questions.js?v=1"></script>
+  <script src="assets/game/game.js?v=1"></script>
+  <!-- visitor statistics, as on every page (analytics.js) -->
+  <script src="assets/js/analytics.js?v=4"></script>
+  <!-- accessibility button and menu (TAB-NAV); a11y-lang.js opens the menu in the page's language -->
+  <script src="assets/js/a11y-lang.js?v=4"></script>
+  <script src="https://widget.tabnav.com/widget.min.js.gz" defer></script>
+</body>
+</html>

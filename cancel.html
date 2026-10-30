@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ביטול עסקה — FutureGen Academy</title>
+<meta name="description" content="טופס לשליחת הודעת ביטול עסקה ל-FutureGen Academy: ביטול הרשמה או הוראת קבע.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FutureGen Academy">
+<meta property="og:locale" content="he_IL">
+<meta property="og:title" content="ביטול עסקה — FutureGen Academy">
+<meta property="og:description" content="טופס לשליחת הודעת ביטול עסקה ל-FutureGen Academy: ביטול הרשמה או הוראת קבע.">
+<meta property="og:image" content="https://future-gen.co.il/assets/og-image.jpg?v=2">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FutureGen Academy — בינה מלאכותית, יזמות ואוריינות פיננסית. חוג שנתי לגילאי 10 עד 16.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://future-gen.co.il/assets/og-image.jpg?v=2">
+<meta name="theme-color" content="#6B4EFF">
+<link rel="icon" href="assets/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="assets/apple-touch-icon.png" type="image/png" sizes="180x180">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=4">
+<link rel="stylesheet" href="assets/css/styles.css?v=4">
+</head>
+<body>
+<a class="skip-link" href="#main">דילוג לתוכן הראשי</a>
+
+<header class="doc-top">
+  <div class="container doc-top-inner">
+    <a class="brand" href="index.html" aria-label="FutureGen Academy — לדף הבית">
+      <span class="brand-mark" aria-hidden="true"><img src="assets/logo-mark.png" alt="" width="44" height="41" decoding="async"></span>
+      <span class="brand-text"><b>FutureGen</b><span>Academy</span></span>
+    </a>
+    <a class="btn btn-outline doc-back" href="index.html">חזרה לאתר</a>
+  </div>
+</header>
+
+<main id="main" class="doc">
+  <div class="container doc-wrap">
+    <h1>ביטול עסקה</h1>
+    <p>רוצים לבטל את ההרשמה או את הוראת הקבע? מלאו את הטופס ושלחו. צריך רק את השם המלא ואת מספר תעודת הזהות של מי שביצע את העסקה; אם תשאירו גם טלפון או אימייל, נוכל לחזור אליכם.</p>
+    <p class="doc-meta" lang="en" dir="ltr">Cancel a transaction: the form below is in Hebrew and English. Only the full name and ID number of the person who made the purchase are required.</p>
+
+    <form class="contact-form cancel-form" id="cancelForm" name="cancel" method="POST" data-netlify="true" netlify-honeypot="company" action="/cancel-sent.html">
+      <input type="hidden" name="form-name" value="cancel">
+      <p class="hp-field" aria-hidden="true">
+        <label>אל תמלאו שדה זה <input name="company" tabindex="-1" autocomplete="off"></label>
+      </p>
+      <div class="field">
+        <label for="cName">שם מלא של מי שביצע את העסקה <span class="lbl-en" lang="en" dir="ltr">Full name of the payer</span></label>
+        <input id="cName" name="name" type="text" required minlength="2" autocomplete="name" aria-describedby="err-cName">
+        <small class="err" id="err-cName" data-err="cName"></small>
+      </div>
+      <div class="field">
+        <label for="cId">מספר תעודת זהות <span class="lbl-en" lang="en" dir="ltr">ID number</span></label>
+        <input id="cId" name="id_number" type="text" required inputmode="numeric" pattern="[0-9]{5,9}" maxlength="9" autocomplete="off" dir="ltr" aria-describedby="err-cId">
+        <small class="err" id="err-cId" data-err="cId"></small>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="cPhone">טלפון (רשות) <span class="lbl-en" lang="en" dir="ltr">Phone (optional)</span></label>
+          <input id="cPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr">
+        </div>
+        <div class="field">
+          <label for="cEmail">אימייל (רשות) <span class="lbl-en" lang="en" dir="ltr">Email (optional)</span></label>
+          <input id="cEmail" name="email" type="email" autocomplete="email" dir="ltr" aria-describedby="err-cEmail">
+          <small class="err" id="err-cEmail" data-err="cEmail"></small>
+        </div>
+      </div>
+      <div class="field">
+        <label for="cPlan">מסלול (רשות) <span class="lbl-en" lang="en" dir="ltr">Plan (optional)</span></label>
+        <select id="cPlan" name="plan">
+          <option value="">בחרו מסלול · Choose a plan</option>
+          <option value="תשלום חודשי">תשלום חודשי · Monthly</option>
+          <option value="מנוי שנתי">מנוי שנתי · Annual</option>
+          <option value="לא בטוח/ה">לא בטוח/ה · Not sure</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="cMsg">הערות (רשות) <span class="lbl-en" lang="en" dir="ltr">Notes (optional)</span></label>
+        <textarea id="cMsg" name="message" rows="3" aria-describedby="hint-cMsg"></textarea>
+        <small class="field-hint" id="hint-cMsg">למשל, אם תרצו שהביטול ייכנס לתוקף במועד מאוחר יותר.<span class="hint-en" lang="en" dir="ltr">For example, if you want the cancellation to take effect at a later date.</span></small>
+      </div>
+      <button class="btn btn-accent btn-lg btn-block" type="submit">שליחת הודעת ביטול · <span lang="en">Send</span></button>
+      <p class="form-note">הפרטים נשמרים אצל FutureGen Academy כדי לטפל בביטול ולתעד אותו. שם ומספר תעודת זהות הם הפרטים שחוק הגנת הצרכן מבקש בהודעת ביטול; שאר השדות רשות. עוד על המידע והזכויות שלכם: <a href="privacy.html">מדיניות הפרטיות</a>.</p>
+    </form>
+
+    <h2>דרכים נוספות לבטל</h2>
+    <ul>
+      <li>בטלפון: <a href="tel:+972525281662" dir="ltr">052-5281662</a></li>
+      <li>בוואטסאפ: <a href="https://wa.me/972525281662" target="_blank" rel="noopener" dir="ltr">052-5281662</a></li>
+      <li>באימייל: <a href="mailto:fgacademy.il@gmail.com" dir="ltr">fgacademy.il@gmail.com</a></li>
+    </ul>
+    <p>בכל דרך שתבחרו, ציינו בהודעה את השם המלא ואת מספר תעודת הזהות של מי שביצע את העסקה. תנאי הביטול מפורטים ב<a href="terms.html#t-cancel">סעיף 3 בתנאי השימוש</a>.</p>
+
+    <section class="doc-en" lang="en" dir="ltr">
+      <h2>Other ways to cancel</h2>
+      <p>You can also cancel by phone or WhatsApp on <a href="tel:+972525281662">052-5281662</a>, or by email at <a href="mailto:fgacademy.il@gmail.com">fgacademy.il@gmail.com</a>. Whichever way you choose, include the full name and ID number of the person who made the purchase. The cancellation terms are in <a href="terms.html#t-cancel">section 3 of the terms</a>.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="doc-foot">
+  <div class="container doc-foot-inner">
+    <p style="margin:0">© <span dir="ltr">2026 FutureGen Academy</span></p>
+    <nav aria-label="קישורים משפטיים">
+      <a href="privacy.html">מדיניות פרטיות</a>
+      <a href="terms.html">תנאי שימוש</a>
+      <a href="cancel.html">ביטול עסקה</a>
+      <a href="accessibility.html">הצהרת נגישות</a>
+      <a href="privacy.html#p-cookies" data-cookie-settings>בלי עוגיות מעקב</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/js/i18n.js?v=4"></script>
+<script src="assets/js/analytics.js?v=4"></script>
+<!-- accessibility button and menu (TAB-NAV); a11y-lang.js opens the menu in the page's language -->
+<script src="assets/js/a11y-lang.js?v=4"></script>
+<script src="https://widget.tabnav.com/widget.min.js.gz" defer></script>
+<script src="assets/js/cancel.js?v=4" defer></script>
+</body>
+</html>

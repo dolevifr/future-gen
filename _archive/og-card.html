@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<style>
+  /* Everything is sized in --u (1/1200 of the width) so the card keeps its
+     proportions at whatever size the renderer uses; the band is then cropped. */
+  :root{--u:calc(100vw / 1200)}
+  html,body{margin:0;height:100%;background:#FFFCF5;overflow:hidden}
+  body{display:grid;place-items:center;font-family:"Heebo",sans-serif;color:#1A1440}
+  .band{position:relative;width:100vw;aspect-ratio:1200 / 630;overflow:hidden;
+        background:radial-gradient(circle at 85% 20%,#E4DCFF 0,transparent 55%),
+                   radial-gradient(circle at 10% 90%,#D4F4F8 0,transparent 55%),#FFFCF5}
+  .card{position:absolute;inset:0;display:grid;grid-template-columns:1fr calc(var(--u)*340);
+        align-items:center;gap:calc(var(--u)*56);padding:calc(var(--u)*64) calc(var(--u)*80)}
+  .logo{grid-column:2;grid-row:1;width:calc(var(--u)*340);height:calc(var(--u)*340);border-radius:calc(var(--u)*60);
+        background:#fff;display:grid;place-items:center;border:calc(var(--u)*3) solid #1A1440;
+        box-shadow:0 calc(var(--u)*30) calc(var(--u)*70) calc(var(--u)*-30) rgba(26,20,64,.45)}
+  .logo img{width:80%;height:auto}
+  .copy{grid-column:1;grid-row:1}
+  .brand{font-family:"Rubik";font-weight:900;font-size:calc(var(--u)*38);direction:ltr;text-align:right;
+         margin:0 0 calc(var(--u)*16)}
+  .brand span{color:#6B4EFF}
+  h1{font-family:"Rubik";font-weight:900;font-size:calc(var(--u)*62);line-height:1.1;margin:0 0 calc(var(--u)*20);
+     white-space:nowrap}
+  h1 em{font-style:normal;color:#4A2FD6;background:linear-gradient(transparent 62%,#FFE08A 62%)}
+  .sub{font-size:calc(var(--u)*28);font-weight:500;color:#3F3A68;margin:0 0 calc(var(--u)*28);white-space:nowrap}
+  .pill{display:inline-block;font-family:"Rubik";font-weight:800;font-size:calc(var(--u)*27);background:#FFC443;
+        color:#1A1440;border-radius:999px;padding:calc(var(--u)*13) calc(var(--u)*32)}
+  /* English: the brand line follows the text edge, and the longer words need a smaller title */
+  [lang=en] .brand{text-align:left}
+  [lang=en] h1{font-size:calc(var(--u)*54)}
+  /* nothing may wrap or push the logo out: _tools/genog.py checks that every line fits */
+</style>
+</head>
+<body>
+  <div class="band"><div class="card">
+    <div class="logo"><img src="brand/og-mark.png" alt=""></div>
+    <div class="copy">
+      <p class="brand">FutureGen <span>Academy</span></p>
+      <h1 id="t">בינה מלאכותית, <em>יזמות</em><br>ואוריינות פיננסית</h1>
+      <!-- dir="ltr" keeps "10–16" in reading order inside Hebrew, and isolates it, so the
+           "28" that follows stays with "מפגשים" (invisible marks alone pulled it next to the ages) -->
+      <p class="sub" id="s">תוכנית שנתית לגילאי <span dir="ltr">10–16</span> · 28 מפגשים · אונליין</p>
+      <span class="pill" id="p">ההרשמה פתוחה</span>
+    </div>
+  </div></div>
+<script>
+/* ?lang=en renders an English card. Not used since 3 Oct 2026: every shared link shows the Hebrew card (_tools/genog.py) */
+if (/[?&]lang=en\b/.test(location.search)) {
+  document.documentElement.lang = "en";
+  document.documentElement.dir = "ltr";
+  document.getElementById("t").innerHTML = "AI, <em>entrepreneurship</em><br>&amp; financial literacy";
+  document.getElementById("s").textContent = "Ages 10–16 · 28 sessions a year · online";
+  document.getElementById("p").textContent = "Registration is open";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>תודה, קיבלנו את הפרטים — FutureGen Academy</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6B4EFF">
+<link rel="icon" href="assets/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/rubik-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=4">
+<link rel="stylesheet" href="assets/css/styles.css?v=4">
+<style>
+  .done-wrap{min-height:100vh;display:grid;place-items:center;padding:40px 20px}
+  .done{max-width:620px;width:100%;background:var(--surface);border:2px solid var(--line-2);
+        border-radius:var(--r-lg);padding:clamp(28px,5vw,48px);box-shadow:var(--shadow);text-align:center}
+  .done-ico{width:82px;height:82px;border-radius:50%;background:#DCF5C6;display:grid;place-items:center;
+            margin-inline:auto;margin-block-end:22px;font-size:2.4rem}
+  .done h1{font-size:clamp(1.6rem,1.2rem + 1.6vw,2.2rem);margin-block-end:.4em}
+  .done .lead{margin-inline:auto}
+  .done-next{text-align:start;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);
+             padding:20px 22px;margin-block:26px}
+  .done-next h2{font-size:1rem;margin-block-end:12px}
+  .done-next ol{display:grid;gap:10px;counter-reset:step}
+  .done-next li{position:relative;padding-inline-start:32px;font-size:.94rem;color:var(--ink-2)}
+  .done-next li::before{counter-increment:step;content:counter(step);position:absolute;inset-inline-start:0;
+    inset-block-start:0;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;
+    font-family:var(--font-head);font-weight:800;font-size:.78rem;display:grid;place-items:center}
+  .done-en{margin-block-start:28px;padding-block-start:22px;border-block-start:1px solid var(--line);
+           direction:ltr;text-align:left;font-size:.92rem;color:var(--ink-2)}
+  .done-contact{margin-block-start:18px;font-size:.92rem}
+  .done-contact a{font-weight:700}
+  .done-legal{font-size:.86rem;margin-block-start:10px}
+  .done-legal a{text-decoration:underline}
+  .done-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+  /* keep the floating accessibility button (TAB-NAV) clear of the last lines on phones */
+  @media (max-width:820px){ .done-wrap{padding-block-end:110px} }
+</style>
+</head>
+<body data-page-event="generate_lead">
+<!-- only the lead form lands here, so arriving here is what counts as a lead (analytics.js) -->
+<a class="skip-link" href="#main">דילוג לתוכן הראשי</a>
+<main class="done-wrap" id="main">
+  <div class="done">
+    <div class="done-ico" aria-hidden="true">🙌</div>
+    <h1>תודה! קיבלנו את הפרטים</h1>
+    <p class="lead">נחזור אליכם בהקדם עם המלצה לקבוצה שמתאימה לגיל ולרמה. בינתיים אפשר להציץ בסילבוס המלא.</p>
+
+    <div class="done-actions">
+      <a class="btn btn-primary btn-lg" href="syllabus.html">לסילבוס המלא</a>
+      <a class="btn btn-outline btn-lg" href="index.html">חזרה לאתר</a>
+    </div>
+
+    <p class="done-contact">שאלה? <a href="tel:+972525281662" dir="ltr">052-5281662</a>
+      · <a href="mailto:fgacademy.il@gmail.com" dir="ltr">fgacademy.il@gmail.com</a></p>
+
+    <p class="done-legal"><a href="privacy.html">מדיניות פרטיות</a> · <a href="terms.html">תנאי שימוש</a> · <a href="cancel.html">ביטול עסקה</a> · <a href="accessibility.html">הצהרת נגישות</a> · <a href="privacy.html#p-cookies" data-cookie-settings>בלי עוגיות מעקב</a></p>
+
+    <p class="done-en" lang="en"><strong>Thank you — we've got your details.</strong> We'll get back to you soon
+      with the group that fits your child's age and level. Meanwhile, have a look at the
+      <a href="syllabus.html">full syllabus</a>.</p>
+  </div>
+</main>
+<script src="assets/js/i18n.js?v=4"></script>
+<script src="assets/js/analytics.js?v=4"></script>
+<!-- accessibility button and menu (TAB-NAV); a11y-lang.js opens the menu in the page's language -->
+<script src="assets/js/a11y-lang.js?v=4"></script>
+<script src="https://widget.tabnav.com/widget.min.js.gz" defer></script>
+</body>
+</html>

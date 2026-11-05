@@ -130,10 +130,10 @@ window.SYLLABI = {
       { n:8, sem:"a", part:"a3",
         he:{ t:"מחברים את כל היכולות לווידאו מלא",
              learn:"השלב הסופי בהפקה: מחברים תמונות, וידאו, תמלול, כתוביות וסאונד. הילדים מבינים איך פס הקול מכתיב את הרגש של הצופה, ואיך מוזיקה דרמטית לעומת מוזיקה קצבית משנה לגמרי את המשמעות של אותה סצנה בדיוק.",
-             act:"״הטריילר הרשמי״: מכניסים את השיר ל-CapCut, מוסיפים קריינות בעזרת Text-to-Speech ומפיקים טריילר אפי של 30 שניות." },
+             act:"״הטריילר הרשמי״: מוסיפים ב-CapCut מוזיקה וקריינות בעזרת Text-to-Speech ומפיקים טריילר אפי של 30 שניות." },
         en:{ t:"Putting it all together into a full video",
              learn:"The last stage of production: images, video, transcription, captions and sound come together. Kids see how the soundtrack sets the viewer's emotions, and how dramatic music versus upbeat music can completely change the meaning of the very same scene.",
-             act:"\"The official trailer\": bringing the song into CapCut, adding narration with text-to-speech and producing an epic 30-second trailer." } },
+             act:"\"The official trailer\": adding music and text-to-speech narration in CapCut and producing an epic 30-second trailer." } },
 
       { n:9, sem:"a", part:"a4",
         he:{ t:"המשימה הסודית — תחילת ההאקתון",

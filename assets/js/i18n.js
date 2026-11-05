@@ -141,7 +141,7 @@ window.I18N = {
 
 
     "plans.title": "מחיר אחד, בלי אותיות קטנות",
-    "plans.cta": "לפרטים והרשמה",
+    "plans.cta": "לפרטים נוספים",
     "plans.monthly": "תשלום חודשי",
     "plans.yearly": "מנוי שנתי",
     "plans.perMonth": "לחודש",
@@ -397,7 +397,7 @@ window.I18N = {
 
 
     "plans.title": "One price, no small print",
-    "plans.cta": "Details & sign-up",
+    "plans.cta": "More details",
     "plans.monthly": "Monthly",
     "plans.yearly": "Annual",
     "plans.perMonth": "per month",

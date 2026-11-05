@@ -9,7 +9,7 @@ from shell import page
 
 HE = '''
     <h1 id="he">מדיניות פרטיות</h1>
-    <p class="doc-meta">עודכנה לאחרונה: 16 באוקטובר 2026</p>
+    <p class="doc-meta">עודכנה לאחרונה: 5 בנובמבר 2026</p>
     <p class="doc-switch"><a href="#en" lang="en">English version below</a></p>
 
     <p>FutureGen Academy (״FutureGen״, ״אנחנו״) מפעילה את האתר future-gen.co.il ותוכנית לימודים בבינה מלאכותית, יזמות ואוריינות פיננסית לילדים ולנוער. מסמך זה מסביר איזה מידע אנחנו אוספים, למה, עם מי הוא משותף ומה הזכויות שלכם. הוא חל על האתר, על טופס יצירת הקשר שבו ועל טופסי לידים שלנו ברשתות החברתיות.</p>
@@ -18,7 +18,7 @@ HE = '''
     <section class="doc-summary" aria-labelledby="sum-he">
       <h2 id="sum-he">בקצרה: מה נשמר עליכם</h2>
       <ul>
-        <li><b>כשאתם רק גולשים באתר</b>, אנחנו לא יודעים מי אתם. <span data-cookies="off">האתר לא משתמש בעוגיות מעקב או פרסום,</span><span data-cookies="on" hidden>עוגיות ניתוח ופרסום נטענות רק אם אישרתם אותן,</span> ואין בו הרשמה או סיסמאות. השפה וקבוצת הגיל שבחרתם נשמרות רק בדפדפן שלכם.<span data-stats="on" hidden> אנחנו סופרים ביקורים באופן אנונימי ובלי עוגיות, כדי לדעת כמה אנשים מגיעים לאתר ומה מעניין אותם.</span> כמו כל שרת, ספקית האחסון רושמת נתונים טכניים כמו כתובת IP וסוג הדפדפן.</li>
+        <li><b>כשאתם רק גולשים באתר</b>, אנחנו לא יודעים מי אתם. <span data-cookies="off">האתר לא משתמש בעוגיות מעקב או פרסום,</span><span data-cookies="on" hidden>עוגיות ניתוח ופרסום נטענות רק אם אישרתם אותן,</span> ואין בו הרשמה או סיסמאות. קבוצת הגיל שבחרתם נשמרת רק בדפדפן שלכם.<span data-stats="on" hidden> אנחנו סופרים ביקורים באופן אנונימי ובלי עוגיות, כדי לדעת כמה אנשים מגיעים לאתר ומה מעניין אותם.</span> כמו כל שרת, ספקית האחסון רושמת נתונים טכניים כמו כתובת IP וסוג הדפדפן.</li>
         <li><b>כששולחים את טופס יצירת הקשר</b>, נשמרים הפרטים שמילאתם, העמוד והקמפיין שדרכם הגעתם, וגם זמן השליחה, כתובת ה-IP וסוג הדפדפן.</li>
         <li><b>כשנרשמים וחותמים על ההסכם באתר</b>, נשמרים פרטי ההורה (שם, מספר תעודת זהות, טלפון ודוא״ל), שם התלמיד/ה וגילו/ה, החתימה, מועד החתימה וסוג הדפדפן, כדי לתעד את ההסכם. עותק חתום נשלח אליכם בדוא״ל.</li>
         <li><b>כששולחים את טופס ביטול העסקה</b>, נשמרים השם, מספר תעודת הזהות ושאר הפרטים שמילאתם, וגם זמן השליחה, כדי לטפל בביטול ולתעד אותו.</li>
@@ -72,7 +72,7 @@ HE = '''
       <li>לתעד את ההסכם שנחתם בהרשמה ולשלוח לכם עותק שלו.</li>
       <li>לטפל בהודעות ביטול עסקה ולתעד אותן.</li>
       <li>לשלוח לכם עדכונים על התוכנית ומועדי פתיחה — <b>רק אם אישרתם זאת</b>, ועם אפשרות הסרה בכל עת.</li>
-      <li>להבין אילו ערוצי שיווק עובדים ולשפר את האתר — בנתונים מצטברים, ובעוגיות רק לאחר הסכמה.</li>
+      <li>להבין אילו ערוצי שיווק עובדים ולשפר את האתר — בנתונים מצטברים<span data-cookies="on" hidden>, ובעוגיות רק לאחר הסכמה</span>.</li>
       <li>לעמוד בחובות שהדין מטיל עלינו.</li>
     </ul>
     <p>אנחנו לא מוכרים מידע אישי ולא מעבירים אותו לגורמים אחרים לצורכי השיווק שלהם.</p>
@@ -82,9 +82,9 @@ HE = '''
     <ul>
       <li><b>צוות FutureGen ומדריכים</b> — במידה הנדרשת לשיבוץ ולקיום המפגשים.</li>
       <li><b>Netlify, Inc.</b> — אחסון האתר וקליטת טופס יצירת הקשר, כולל סינון ספאם אוטומטי.</li>
-      <li><b>Meta Platforms</b> — אם פניתם אלינו דרך טופס לידים בפייסבוק או באינסטגרם או בוואטסאפ, ואם אישרתם עוגיות פרסום (Meta Pixel).</li>
+      <li><b>Meta Platforms</b> — אם פניתם אלינו דרך טופס לידים בפייסבוק או באינסטגרם או בוואטסאפ<span data-vendor="metaPixel" hidden>, ואם אישרתם עוגיות פרסום (Meta Pixel)</span>.</li>
       <li><b>Make</b> — שירות שמעביר את הפרטים שמילאתם בטופס לידים בפייסבוק או באינסטגרם אל גיליון הפניות שלנו.</li>
-      <li><b>Google</b> — לצורך תיבת הדוא״ל שלנו, לניהול הפניות וההרשמות בגיליון מאובטח (Google Sheets), לשמירת ההסכמים החתומים (Google Drive) ולשליחת העותק אליכם, ואם אישרתם עוגיות ניתוח (Google Analytics).</li>
+      <li><b>Google</b> — לצורך תיבת הדוא״ל שלנו, לניהול הפניות וההרשמות בגיליון מאובטח (Google Sheets), לשמירת ההסכמים החתומים (Google Drive) ולשליחת העותק אליכם<span data-vendor="ga4" hidden>, ואם אישרתם עוגיות ניתוח (Google Analytics)</span>.</li>
       <li data-stats="on" hidden><b>Umami Software, Inc.</b> — סטטיסטיקת הביקורים האנונימית שמתוארת בסעיף 5.</li>
       <li><b>TabNav</b> — כפתור הנגישות באתר. הוא נטען מהשרתים של TabNav, ולכן הם מקבלים, כמו כל שרת אינטרנט, נתונים טכניים כגון כתובת IP וסוג הדפדפן.</li>
       <li><b>Grow</b> — ספק הסליקה. כשבוחרים מסלול ולוחצים על ״להרשמה ותשלום״, עוברים לעמוד התשלום של Grow, והפרטים שמוזנים שם כפופים גם למדיניות הפרטיות שלה. פרטי כרטיס האשראי או חשבון הבנק מוזנים אצל Grow בלבד ואינם מגיעים אלינו; אנחנו מקבלים ממנה את פרטי העסקה, כמו מי שילם, כמה ומתי.</li>
@@ -123,7 +123,6 @@ HE = '''
     <table class="doc-table">
       <thead><tr><th scope="col">מה נשמר</th><th scope="col">לכמה זמן</th></tr></thead>
       <tbody>
-        <tr><td>שפת התצוגה, עברית או אנגלית <code dir="ltr">ng.lang</code></td><td>עד שתמחקו את נתוני האתר בדפדפן</td></tr>
         <tr><td>קבוצת הגיל שמוצגת לכם בסילבוס <code dir="ltr">ng.track</code></td><td>עד שתמחקו את נתוני האתר בדפדפן</td></tr>
         <tr data-cookies="on" hidden><td>הבחירה שלכם לגבי עוגיות <code dir="ltr">ng.consent</code></td><td>עד שתמחקו את נתוני האתר בדפדפן</td></tr>
         <tr><td>העמוד שדרכו נכנסתם לאתר, ותגיות קמפיין (utm) אם הגעתם מקישור פרסומי <code dir="ltr">ng.attr</code></td><td>עד שתסגרו את הלשונית. מגיע אלינו רק אם שלחתם את הטופס, יחד איתו.</td></tr>
@@ -153,14 +152,14 @@ HE = '''
 EN = '''
   <section class="doc-en" lang="en" dir="ltr" aria-labelledby="en">
     <h2 id="en" class="doc-title">Privacy policy</h2>
-    <p class="doc-meta">Last updated: 16 October 2026 · <a href="#he" lang="he" dir="rtl">לנוסח העברי</a></p>
+    <p class="doc-meta">Last updated: 5 November 2026 · <a href="#he" lang="he" dir="rtl">לנוסח העברי</a></p>
     <p>FutureGen Academy ("FutureGen", "we") operates future-gen.co.il and a programme in AI, entrepreneurship and financial literacy for children and teenagers. This policy explains what we collect, why, who we share it with, and your rights. It covers the website, its contact form, and our lead forms on social networks. If the Hebrew and English versions differ, the Hebrew version prevails.</p>
     <p><b>Who is responsible for your data:</b> FutureGen Academy is the database controller under the Israeli Privacy Protection Law. For any privacy matter, email <a href="mailto:fgacademy.il@gmail.com">fgacademy.il@gmail.com</a> or call <a href="tel:+972525281662">052-5281662</a>.</p>
 
     <section class="doc-summary" aria-labelledby="sum-en">
       <h3 id="sum-en">In short: what we keep about you</h3>
       <ul>
-        <li><b>When you just browse</b>, we don't know who you are. <span data-cookies="off">The site uses no tracking or advertising cookies,</span><span data-cookies="on" hidden>Analytics and advertising cookies load only if you accept them,</span> and there are no accounts or passwords. Your language and age-group choices stay in your own browser.<span data-stats="on" hidden> We count visits anonymously and without cookies, to know how many people come and what interests them.</span> Like any web server, our host logs technical data such as IP address and browser type.</li>
+        <li><b>When you just browse</b>, we don't know who you are. <span data-cookies="off">The site uses no tracking or advertising cookies,</span><span data-cookies="on" hidden>Analytics and advertising cookies load only if you accept them,</span> and there are no accounts or passwords. Your age-group choice stays in your own browser.<span data-stats="on" hidden> We count visits anonymously and without cookies, to know how many people come and what interests them.</span> Like any web server, our host logs technical data such as IP address and browser type.</li>
         <li><b>When you send the contact form</b>, we keep what you filled in, the page and campaign you came from, and the time, IP address and browser type of the submission.</li>
         <li><b>When you register and sign the agreement on the site</b>, we keep the parent's details (name, ID number, phone and email), the student's name and age, the signature, the time of signing and the browser type, to keep a record of the agreement. A signed copy is emailed to you.</li>
         <li><b>When you send the cancellation form</b>, we keep your name, ID number and whatever else you filled in, and the time it was sent, to handle the cancellation and keep a record of it.</li>
@@ -195,7 +194,7 @@ EN = '''
       <li>To keep a record of the agreement signed at registration and send you a copy.</li>
       <li>To handle cancellation notices and keep a record of them.</li>
       <li>To send updates about the programme — <b>only if you agreed</b>, with an unsubscribe option at any time.</li>
-      <li>To understand which marketing channels work and improve the site — in aggregate, and with cookies only after consent.</li>
+      <li>To understand which marketing channels work and improve the site — in aggregate<span data-cookies="on" hidden>, and with cookies only after consent</span>.</li>
       <li>To meet our legal obligations.</li>
     </ul>
     <p>We do not sell personal data or pass it to others for their own marketing.</p>
@@ -204,9 +203,9 @@ EN = '''
     <ul>
       <li><b>FutureGen staff and mentors</b> — as needed to place students and run sessions.</li>
       <li><b>Netlify, Inc.</b> — website hosting and the contact form, including automatic spam filtering.</li>
-      <li><b>Meta Platforms</b> — if you reached us through a Facebook or Instagram lead form or WhatsApp, and if you accept advertising cookies (Meta Pixel).</li>
+      <li><b>Meta Platforms</b> — if you reached us through a Facebook or Instagram lead form or WhatsApp<span data-vendor="metaPixel" hidden>, and if you accept advertising cookies (Meta Pixel)</span>.</li>
       <li><b>Make</b> — a service that passes the details you entered in a Facebook or Instagram lead form on to our enquiries spreadsheet.</li>
-      <li><b>Google</b> — for our email inbox, for managing enquiries and registrations in a secured spreadsheet (Google Sheets), for keeping signed agreements (Google Drive) and sending you your copy, and if you accept analytics cookies (Google Analytics).</li>
+      <li><b>Google</b> — for our email inbox, for managing enquiries and registrations in a secured spreadsheet (Google Sheets), for keeping signed agreements (Google Drive) and sending you your copy<span data-vendor="ga4" hidden>, and if you accept analytics cookies (Google Analytics)</span>.</li>
       <li data-stats="on" hidden><b>Umami Software, Inc.</b> — the anonymous visit statistics described in section 5.</li>
       <li><b>TabNav</b> — the site's accessibility button. It loads from TabNav's servers, which, like any web server, receive technical data such as your IP address and browser type.</li>
       <li><b>Grow</b> — our payment provider. When you pick a plan and click "Sign up and pay", you move to Grow's payment page, and what you enter there is also subject to Grow's privacy policy. Card or bank details are entered with Grow only and never reach us; we receive the transaction details from Grow, such as who paid, how much and when.</li>
@@ -237,7 +236,6 @@ EN = '''
     <table class="doc-table">
       <thead><tr><th scope="col">What</th><th scope="col">How long</th></tr></thead>
       <tbody>
-        <tr><td>Display language, Hebrew or English <code>ng.lang</code></td><td>Until you clear the site's data in your browser</td></tr>
         <tr><td>The age group shown in the syllabus <code>ng.track</code></td><td>Until you clear the site's data in your browser</td></tr>
         <tr data-cookies="on" hidden><td>Your cookie choice <code>ng.consent</code></td><td>Until you clear the site's data in your browser</td></tr>
         <tr><td>The page you entered on, and campaign tags (utm) if you came from an ad link <code>ng.attr</code></td><td>Until you close the tab. It reaches us only if you send the form, together with it.</td></tr>
